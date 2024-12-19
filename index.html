@@ -1,11 +1,520 @@
-<center>
-<t1> ملاحظة </t1>
-<p>سيتم إغلاق هذا الموقع لأسباب منها شخصية لأن بناءا على أفعال شخص المقصود في هذا الموقع لا يستحق هذه المبادرة ومنها التدخلات لأشخاص ليس لديهم علاقة بهذه المواضيع رفقة أفكار شيطانية يتم تطبيقها كل يوم، مستوى رديء جدا منها سب الجلالة ومنها قذف أمهات مما جعلني ألغي هذه الفكرة  ومنها أسباب  تقنية لأنني لن أدفع المزيد الفواتير الخاصة للإحتواء هندسة الويب لشخص سبب لي كل هذا محافظا على كرامتي كمسلم ومحافظ وتقي يخاف الله سبحانه وتعالى </p>
-<p>ربما أتراجع عن قراري في حال توبة الشخص المقصود من الأفعال السيئة تجاهي في أيام القادمة ونضجه من هذه التفاهات وسوء الأخلاق و إبتعاد عن الأشخاص الذين يتسببون في هذه الفتنة</p>
-<p>سيتم إغلاقه تماما في 7 جانفي 2025. ويعتبر هذا التاريخ الأجل الأخير لآستخلاص المنصة من فواتير وشكرا </p>
-</center>
-<script>
-  t1{
-  front_text:sans_serif;
-    color:red;
-</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Beat Loader</title>
+    <style>
+        /* From Uiverse.io by Alderx */
+        /* heart beat */
+        .heartbeatloader {
+            position: absolute;
+            width: 10vmin;
+            height: 10vmin;
+            z-index: 9999;
+            margin: auto;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff; /* Background for loader */
+        }
+
+        .svgdraw {
+            top: 30%;
+            left: 26%;
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            color: #fff;
+            transform: scale(1.4);
+            z-index: 3;
+        }
+
+        .path {
+            stroke: rgba(255, 255, 255, 0.95);
+            stroke-width: 4;
+            stroke-dasharray: 1000px;
+            stroke-dashoffset: 1000px;
+            animation: draw 1.5s infinite forwards normal linear;
+            animation-delay: 0.1s;
+            position: relative;
+        }
+
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .innercircle {
+            position: absolute;
+            top: 17%;
+            left: 100.5%;
+            transform: translate(-50%, -50%) scale(1.2);
+            width: 160%;
+            height: auto;
+            z-index: 1;
+            opacity: 0.97;
+            animation: innerbeat 1.5s infinite linear forwards;
+        }
+
+        .innercircle:before,
+        .innercircle:after {
+            position: absolute;
+            content: "";
+            left: 25%;
+            top: 0;
+            width: 25%;
+            height: auto;
+            padding-bottom: 40%;
+            background: rgb(225, 95, 95);
+            border-radius: 50px 50px 0 0;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .innercircle:after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        @keyframes innerbeat {
+            0% {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+
+            10% {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.3);
+            }
+
+            60% {
+                transform: translate(-50%, -50%) scale(1.25);
+            }
+
+            75% {
+                transform: translate(-50%, -50%) scale(1.3);
+            }
+        }
+
+        .outercircle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: rgba(238, 92, 92, 0.9);
+            box-shadow: 0 0 30px 0px #fff;
+            position: absolute;
+            z-index: -1;
+            opacity: 0.7;
+            top: 0;
+            left: 0;
+            transform: scale(1.2);
+            animation: outerbeat 1.5s infinite linear forwards;
+        }
+
+        @keyframes outerbeat {
+            0% {
+                transform: scale(1.2);
+            }
+
+            10% {
+                transform: scale(1.2);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+
+            60% {
+                transform: scale(1.25);
+            }
+
+            75% {
+                transform: scale(1.3);
+            }
+        }
+
+        /* Main Content Styling */
+        #content {
+            display: none; /* Initially hidden */
+            text-align: center;
+            padding: 50px;
+            font-family: Arial, sans-serif;
+        }
+
+        #content h1 {
+            font-size: 3em;
+            color: #333;
+        }
+
+        #content p {
+            font-size: 1.5em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loader Section -->
+    <div class="heartbeatloader" id="loader">
+        <svg class="svgdraw" width="100%" height="100%" viewBox="0 0 150 400" xmlns="http://www.w3.org/2000/svg">
+            <path class="path" d="M 0 200 l 40 0 l 5 -40 l 5 40 l 10 0 l 5 15 l 10 -140 l 10 220 l 5 -95 l 10 0 l 5 20 l 5 -20 l 30 0" fill="transparent" stroke-width="4" stroke="black"></path>
+        </svg>
+        <div class="innercircle"></div>
+        <div class="outercircle"></div>
+    </div>
+    <script>
+        window.onload = function() {
+            var loader = document.getElementById("loader");
+            var content = document.getElementById("content");
+
+            if (!loader || !content) {
+                console.error("Error: Loader or content not found!");
+                return;
+            }
+
+            setTimeout(function() {
+                loader.style.display = "none"; // Hide the loader
+                content.style.display = "block"; // Show the content
+            }, 3000); // Adjust the delay (3000 ms = 3 seconds)
+        };
+    </script>
+
+</body>
+</html>
+ <!-- Main Content -->
+    <!DOCTYPE html>
+<html lang="content">
+    <div id="content">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Timeless Love</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            background: linear-gradient(45deg, rgb(80, 0, 145), #000000);
+            overflow-x: hidden;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Global Transition */
+        * {
+            transition: all 0.6s ease;
+        }
+
+        /* Parallax Background */
+        .parallax {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://example.com/your-background-image.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            filter: blur(10px);
+            animation: parallaxEffect 18s linear infinite;
+        }
+
+        @keyframes parallaxEffect {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(15px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            z-index: 1;
+            color: #fff;
+        }
+
+        .header h1 {
+            font-size: 5vw;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .header p {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #fff;
+            margin-top: 20px;
+            font-family: 'Great Vibes', cursive;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        }
+
+        /* Love Message Section */
+        .love-message {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .love-message img {
+            width: 100%;
+            max-width: 250px;
+            border-radius: 15px;
+            margin: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease;
+        }
+
+        .love-message img:hover {
+            transform: scale(1.1);
+        }
+
+        .love-message h2 {
+            font-size: 2.5rem;
+            font-family: 'Great Vibes', cursive;
+            color: #440058;
+            margin-bottom: 20px;
+        }
+
+        .love-message p {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-top: 15px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Call to Action Buttons */
+        .cta-button {
+            margin-top: 30px;
+            background: #fff;
+            color: #4f046d;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            border-radius: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .cta-button:hover {
+            background: #340255;
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .cta-link {
+            margin-top: 20px;
+            display: block;
+            background: #fff;
+            color: #3d0066;
+            padding: 10px 30px;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            border-radius: 50px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .cta-link:hover {
+            background: #500274;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        /* Animated Elements */
+        .scroll-down {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 1.5rem;
+            color: #fff;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Image Slider */
+        .image-slider {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+            padding: 10px;
+        }
+
+        .image-slider img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 15px;
+            margin: 0 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease;
+        }
+
+        .image-slider img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 10vw;
+            }
+
+            .header p {
+                font-size: 1.5rem;
+            }
+
+            .cta-button {
+                font-size: 1rem;
+                padding: 12px 30px;
+            }
+
+            .scroll-down {
+                font-size: 1.2rem;
+            }
+
+            .image-slider img {
+                max-width: 200px;
+            }
+
+            .love-message h2 {
+                font-size: 2rem;
+            }
+
+            .love-message p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 12vw;
+            }
+
+            .header p {
+                font-size: 1.2rem;
+            }
+
+            .cta-button {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+
+            .scroll-down {
+                font-size: 1rem;
+            }
+
+            .image-slider img {
+                max-width: 150px;
+            }
+
+            .love-message h2 {
+                font-size: 1.8rem;
+            }
+
+            .love-message p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Parallax Effect -->
+    <div class="parallax"></div>
+
+    <!-- Header Section -->
+    <div class="header">
+        <h1>Timeless Love</h1>
+        <p>My Heart Beats for Khouloud , Forever</p>
+        <button class="cta-button">Feel the Love</button>
+        <div class="scroll-down">Scroll Down</div>
+    </div>
+
+    <!-- Love Message Section -->
+    <div class="love-message">
+        <img src="470057149_2934707220039613_1485382856701699918_n.jpg" alt="Love Image 1">
+        <h2>For Khouloud, My Heart</h2>
+        <p>
+            There are no words to express the depth of my feelings for you. You are my forever, my heart, and my soul. 
+            Every moment with you is a gift, and I promise to cherish and adore you for all eternity. You are the light in my life, 
+            and without you, everything seems incomplete. I want to spend forever showing you how much you mean to me.
+            She is not just someone in my life; she is the soul that completes me and the heartbeat that keeps me alive.
+             Her beauty lies not only in her appearance but in the purity of her heart and the sweetness of her words.
+              When she is by my side, it feels like the world stops, and everything becomes more beautiful and simple.
+               She is the safety I always seek and the smile that gives me the strength to face anything.
+             Simply put, she is everything I need to be happy.
+        </p>
+        <img src="462641156_3550582478575093_7055344875960642968_n.jpg" alt="Love Image 2">
+        <button class="cta-button">Read More About My Love</button>
+        <a href="https://radhwan2007.github.io/154/" class="cta-link">Visit Our Love Story</a>
+    </div>
+
+    <!-- Image Slider Section -->
+    <div class="image-slider">
+        <img src="462638857_8902674403130998_7107460625557873939_n.jpg" alt="Love Image 1">
+        <img src="462640258_953082693367739_9066069847886227555_n.jpg" alt="Love Image 2">
+        <img src="470052717_479896461343118_8875826575214990851_n.jpg" alt="Love Image 3">
+    </div>
+
+    <script>
+        // Simple Scroll Effect for Button
+        document.querySelector(".cta-button").addEventListener("click", function() {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+        });
+
+        // Scroll Down Effect
+        window.addEventListener("scroll", function() {
+            const scrollText = document.querySelector(".scroll-down");
+            if (window.scrollY > 50) {
+                scrollText.style.opacity = 0;
+            } else {
+                scrollText.style.opacity = 1;
+            }
+        });
+        
+    </script>
+</div>
+</body>
+  </html>

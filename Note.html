@@ -225,51 +225,39 @@
             <div class="image-frame">
                 <img src="img/20250103_203523.jpg" alt="A special image">
             </div>
-	
-  <style>
-    /* CSS: تخصيص المظهر */
-    
+             <audio controls>
+  <source src="path/audio/01.mp3" type="audio/mp3">
+  متصفحك لا يدعم تشغيل الصوت.
+</audio>
+<style>
+	audio {
+  width: 100%; /* لتوسيع الصوت ليشمل عرض العنصر */
+  border-radius: 15px; /* إضافة زوايا دائرية */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* إضافة ظل */
+}
 
-    .audio-container {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
+audio::-webkit-media-controls-panel {
+  background-color: #333; /* تخصيص خلفية أزرار التحكم */
+}
 
-    audio {
-      width: 100%;
-      border-radius: 10px;
-      outline: none;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
+audio::-webkit-media-controls-play-button {
+  background-color: #ff6347; /* تخصيص لون زر التشغيل */
+  border-radius: 50%;
+}
 
-    /* تخصيص الأزرار */
-    audio::-webkit-media-controls-panel {
-      background-color: #333;
-    }
+audio::-webkit-media-controls-volume-slider {
+  background-color: #008cba; /* تخصيص شريط الصوت */
+}
+</style>
+<script>
+document.querySelector('audio').addEventListener('mouseover', function() {
+  this.play();  // يبدأ التشغيل عند مرور الفأرة
+});
 
-    audio::-webkit-media-controls-play-button {
-      background-color: #ff6347;
-      border-radius: 50%;
-    }
-
-    audio::-webkit-media-controls-volume-slider {
-      background-color: #008cba;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="audio-container">
-    <audio controls>
-      <source src="audio/01.mp3" type="audio/mp3">
-      متصفحك لا يدعم تشغيل الصوت.
-    </audio>
-  </div>
-
-</body>
-</html>
+document.querySelector('audio').addEventListener('mouseout', function() {
+  this.pause();  // يتوقف التشغيل عند مغادرة الفأرة
+});
+</script>
         </main>
 
     </body>
